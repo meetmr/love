@@ -25,7 +25,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
 });
 
 
-Route::group(['prefix'=>'user'],function (){
-
+Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::get('activate', 'UserController@activate');
+    Route::post('activate','UserController@activateche');
 });

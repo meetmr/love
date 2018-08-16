@@ -115,7 +115,9 @@ class IndexController extends Controller
            ];
            return json_encode($state);
        }
-       if($user[0]['is_serious'] == 0){
+
+       session(['user'=>$user[0]]);
+        if($user[0]['is_serious'] == 0){
            $state = [
                'error' => 2,
                'msg'=> '第一次登陆进入激活页面'

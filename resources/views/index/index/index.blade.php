@@ -11,10 +11,10 @@
 				<div class="text pure-u-1 pure-u-md-5-8">
 					<div>
 						<p class="centen1">
-							<img src="/index/picture/ji.svg"><img src="/index/picture/jin.svg"><img src="/index/picture/fang.svg"><img src="/index/picture/cun.svg"><img src="/index/picture/rong.svg"><img src="/index/picture/tian.svg"><img src="/index/picture/xia.svg">
+							心连心同献爱心
 						</p>
 						<p class="centen2">
-							<img src="/index/picture/gong.svg"><img src="/index/picture/ju.svg"><img src="/index/picture/jian.svg"><img src="/index/picture/pan.svg"><img src="/index/picture/shu.svg"><img src="/index/picture/hui.svg"><img src="/index/picture/huang.svg">
+							手牵手齐伸援手！
 						</p>
 						<p class="enters">
 							<a href="action.jsp" class="pure-button pure-button-primary">活动中心</a>

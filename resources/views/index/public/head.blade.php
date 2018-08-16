@@ -25,12 +25,20 @@
             <a class="title-set pure-menu-heading" href="/">
                 <span class="big-text">爱心社</span>
                 <span class="small-text">Love society</span>
+                <span ></span>
+                @if(session('user'))
+                    <span class="small-text">欢迎萌新{{session('user.user_name')}}登陆</span>
+                @endif
             </a>
-
             <ul class="home-menu-list pure-menu-list">
+
                 <li class="pure-menu-item"><a href="words.jsp" class="pure-menu-link">留言板</a></li>
-                <li class="pure-menu-item"><a class="pure-menu-link" href="{{ url('register') }}">注册</a></li>
-                <li class="pure-menu-item"><a class="pure-menu-link" href="{{ url('login') }}">登陆</a></li>
+                @if(session('user'))
+
+                @else
+                    <li class="pure-menu-item"><a class="pure-menu-link" href="{{ url('register') }}">注册</a></li>
+                    <li class="pure-menu-item"><a class="pure-menu-link" href="{{ url('login') }}">登陆</a></li>
+                @endif
             </ul>
         </div>
     </div>

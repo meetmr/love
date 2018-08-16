@@ -10,9 +10,9 @@
                         <legend>用户登录</legend>
 
                         <label for="username">学号</label>
-                        <input class="pure-input-1" name="username" id="school_number" type="text" value="16301074" placeholder="请输入学号">
+                        <input class="pure-input-1" name="username" id="school_number" type="text" placeholder="请输入学号">
                         <label for="password">设置密码</label>
-                        <input class="pure-input-1" name="pwd" id="password" type="password" value="123456" placeholder="请输入密码">
+                        <input class="pure-input-1" name="pwd" id="password" type="password"  placeholder="请输入密码">
 
                     </fieldset>
                     <fieldset>

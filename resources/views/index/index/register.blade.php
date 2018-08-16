@@ -9,13 +9,13 @@
                     <fieldset>
                         <legend>注册成为爱心社的一员</legend>
                         <label for="email">Email</label>
-                        <input class="pure-input-1" name="email" value="1781634625@qq.com" id="email" type="email" placeholder="用于找回密码">
+                        <input class="pure-input-1" name="email" id="email" type="email" placeholder="用于找回密码">
                         <label for="username">学号</label>
-                        <input class="pure-input-1" name="school_number" value="16301074"  id="school_number" type="text" placeholder="数字8位用于登陆">
+                        <input class="pure-input-1" name="school_number" id="school_number" type="text" placeholder="数字8位用于登陆">
                         <label for="password">设置密码</label>
-                        <input class="pure-input-1" name="pwd" id="password"  value="123456" type="password" placeholder="任意字符6-20位">
+                        <input class="pure-input-1" name="pwd" id="password"   type="password" placeholder="任意字符6-20位">
                         <label for="password2">重复密码</label>
-                        <input class="pure-input-1" name="rePwd" id="password2" value="123456" type="password" placeholder="任意字符6-20位">
+                        <input class="pure-input-1" name="rePwd" id="password2"  type="password" placeholder="任意字符6-20位">
                     </fieldset>
                     <fieldset>
                         <button type="button" onclick="reg()" class="pure-button pure-input-1 pure-button-primary">注&nbsp;&nbsp;册</button>
