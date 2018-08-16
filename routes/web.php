@@ -12,10 +12,20 @@
 */
 
 Route::get('/','IndexController@index');
+Route::get('register','IndexController@register');
+Route::get('login','IndexController@login');
+Route::post('register','IndexController@cheregister');
+Route::post('login','IndexController@chelogin');
 
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
     Route::get('index', 'IndexController@index');
     Route::get('welcome', 'IndexController@welcome');
     Route::get('user/info', 'UserController@userInfo');
+});
+
+
+Route::group(['prefix'=>'user'],function (){
+
+    Route::get('activate', 'UserController@activate');
 });

@@ -1,37 +1,6 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<title>爱心社 - 四川信息职业技术学院</title>
-<link rel="stylesheet" type="text/css" href="{{ asset('/index/css/pure-min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ asset('/index/css/grids-responsive-min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ asset('/index/css/global.css')}}">
-</head>
-<body class="page-index">
+﻿@include('index.public.head')
 
-<div class="wraper-bg">
-
-	<div class="header">
-		<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-
-			<a class="logo-set pure-menu-heading" href="./index.jsp">
-				<img class="logo" src="/index/picture/logo.png">
-			</a>
-
-			<a class="title-set pure-menu-heading" href="./index.jsp">
-				<span class="big-text">爱心社</span>
-				<span class="small-text">Love society</span>
-			</a>
-
-			<ul class="home-menu-list pure-menu-list">
-				<li class="pure-menu-item"><a href="words.jsp" class="pure-menu-link">留言板</a></li>
-						<li class="pure-menu-item"><a class="pure-menu-link" href="./login.jsp">登陆/注册</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="splash-wrap">
+<div class="splash-wrap">
 		<div class="splash">
 			<div class="splash-head pure-g">
 
@@ -268,7 +237,7 @@
 						——大学对我的改变
 
 						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
+					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class=" pure-input-1 pure-button-primary">活动详情</a>
 				</div>
 			</div>
 
@@ -276,12 +245,6 @@
 	</div>
 </div>
 
-<div class="footer">
-	<div class="text">
-		<p>四川信息职业技术学院 - 爱心社</p>
-		<p>Copyright © 2018 SCITC - Love society</p>
-	</div>
-</div>
-
+@include('index.public.footer')
 </body>
 </html>

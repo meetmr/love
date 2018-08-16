@@ -281,8 +281,7 @@ a {
 .login-panel {
   max-width: 48em;
   margin: 0 auto;
-  padding: 6em 2em 9em;
-  background-image: url("../images/welcome.png");
+  padding: 6em 2em 5em;
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: auto 8em;
@@ -305,9 +304,7 @@ a {
 .login-panel .box form label {
   color: #666;
 }
-.login-panel .login.pure-g {
-  box-shadow: 0px 1px 3px 0px #cbcbcb;
-}
+
 .login-panel .box.login {
   background: #fff;
 }
@@ -552,4 +549,8 @@ a {
   .splash-wrap .splash-subhead {
     display: none !important;
   }
+}
+
+.login{
+  border:0;
 }
