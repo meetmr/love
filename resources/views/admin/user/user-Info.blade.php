@@ -12,58 +12,62 @@
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
+<xblock>
+    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
+    <button disabled class="layui-btn" onclick="x_admin_show('')"><i class="layui-icon"></i>添加</button>
+    <div class="layui-input-inline">
+        <form class="layui-form" action="{{ url('admin/user/info') }}" method="post" onsubmit="return foo();">
+            {{ csrf_field() }}
+            <div class="layui-input-inline">
+                <input type="text" name="key" id="key" autocomplete="off" placeholder="请输入学号或者姓名..." class="layui-input">
+            </div>
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>
+        </form>
+    </div>
+</xblock>
 
 <div class="x-body" >
-    <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="layui-btn" onclick="x_admin_show('添加友链','{:url(\'admin/Link/add\')}',500,550)"><i class="layui-icon"></i>添加</button>
-    </xblock>
+
     <div class="container-wrap">
         <div class="box-1">
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th width="10" style="text-align: center">
-                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-                    </th>
                     <th style="text-align: center" width="80">学号</th>
                     <th style="text-align: center" width="100">姓名</th>
                     <th style="text-align: center" width="40">邮箱</th>
                     <th style="text-align: center" width="20">是否验证</th>
-                    <th style="text-align: center" width="50" >密码</th>
-                    <th style="text-align: center" width="50" >几届</th>
+                    <th style="text-align: center" width="50" >系部</th>
+                    <th style="text-align: center" width="50" >班级</th>
                     <th style="text-align: center" width="50">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr  style="text-align: center">
-                    <td>
-                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id=''><i class="layui-icon">&#xe605;</i></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="layui-btn layui-btn-xs" onclick="update_status(this,'{$info.id}','{$info.status}')" >启用</button>
-                        <button class="layui-btn layui-btn-primary layui-btn-xs" onclick="update_status(this,'{$info.id}','{$info.status}')">禁用</button>
-                    </td>
-                    <td class="td-manage" width="10">
-                        <div class="layui-input-inline" >
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改友链','{:url(\'admin/link/edit\',[\'id\'=>$info.id])}',500,550)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_link(this,'{$info.id}','{$info.logo}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
-                        </div>
-                    </td>
-                </tr>
+                    @foreach($users  as $value)
+                        <tr  style="text-align: center">
+                        <td>{{ $value->school_number }}</td>
+                        <td>{{ $value->user_name }}</td>
+                        <td>{{ $value->emal }}</td>
+                        <td>{{ $value->is_serious }}</td>
+                        <td>{{ $value->department }}</td>
+                        <td>{{ $value->class }}</td>
+                        <td class="td-manage" width="10">
+                            <div class="layui-input-inline" >
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/user/{{$value->id}}/edit',500,500)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{ $value->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                            </div>
+                        </td>
+                    </tr>
+                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
     <div class="page">
-        {$linkInfo|raw}
+        {{ $users->links() }}
     </div>
     <script>
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
         layui.use('laydate', function(){
             var laydate = layui.laydate;
             //执行一个laydate实例
@@ -77,72 +81,30 @@
             });
         });
         //更改状态
-        function update_status(obj,id,status) {
-            layer.confirm('确定要更改状态吗？',function(index){
-                $.ajax({
-                    url:"{:url('admin/Link/updateStatus')}",
-                    type:"POST",
-                    dataType:"json",
-                    data:{
-                        id:id,  //id
-                        status:status,   //状态
-                        table:"link",
-                        value:"status"
-                    },
-                    success:function (res) {
-                        if (res === 1){
-                            layer.alert("更新成功", {icon: 6},function () {
-                                window.location.reload();  //刷新父级页面
-                            });
-                        }else {
-                            layer.alert("更新失败", {icon: 5});
-                        }
-                    }
-                });
-            });
-
-        }
         /*删除*/
-        function delete_link(obj,id,logo){
+        function delete_user(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
-                    url:"{:url('admin/Link/deleteLink')}",
+                    url:"{{url('admin/user/delete')}}",
                     type:"POST",
                     dataType:"json",
-                    data:{
-                        id:id,  //id
-                        logo:logo
-                    },
+                    data:{id:id, }, //id},
                     success:function (res) {
-                        if (res === 1){
+                        if (res.error === 1){
                             $(obj).parents("tr").remove();
                             layer.msg('已删除!',{icon:1,time:1000});
                         }else {
-                            layer.alert("更新失败", {icon: 5});
+                            layer.alert("删除失败", {icon: 5});
                         }
                     }
                 });
             });
         }
-
-        function delAll (argument) {
-            var data = tableCheck.getData();
-            layer.confirm('确认要删除吗？',function(index){
-                //捉到所有被选中的，发异步进行删除
-                $.ajax({
-                    url:"/index/index/delall",
-                    type:"POST",
-                    dataType:"json",
-                    data:{
-                        table:"hy_drawing_detial",  //表名
-                        data:data   //数据
-                    },
-                    success:function (res) {
-                        layer.msg(res.message, {icon: 1});
-                        $(".layui-form-checked").not('.header').parents('tr').remove();
-                    },
-                });
-            });
+        function foo() {
+            if($("#key").val() ===''){
+                layer.msg('请输入点内容呗');
+                return false;
+            }
         }
     </script>
 </body>

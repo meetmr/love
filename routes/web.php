@@ -16,16 +16,27 @@ Route::get('register','IndexController@register');
 Route::get('login','IndexController@login');
 Route::post('register','IndexController@cheregister');
 Route::post('login','IndexController@chelogin');
+Route::get('admin/login','Admin\IndexController@login');
+Route::post('admin/login','Admin\IndexController@chelogin');
 
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
+Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=>'Admin'],function (){
     Route::get('index', 'IndexController@index');
     Route::get('welcome', 'IndexController@welcome');
     Route::get('user/info', 'UserController@userInfo');
+    Route::post('user/delete', 'UserController@delete');
+    Route::post('user/info', 'UserController@userInfo');
+    Route::get('user/{id}/edit', 'UserController@edit');
+    Route::post('user/edit', 'UserController@cheedit');
+    Route::get('outlogin', 'UserController@outlogin');
+
+
 });
 
 
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::get('activate', 'UserController@activate');
+    Route::get('outlogin', 'UserController@outlogin');
     Route::post('activate','UserController@activateche');
+
 });

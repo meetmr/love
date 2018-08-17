@@ -24,8 +24,8 @@
 				</div>
 			</div>
 
-			<p class="splash-subhead">
-				The world is boring, write the future together by f12;
+			<p class="splash-subhead">'
+
 			</p>
 
 		</div>

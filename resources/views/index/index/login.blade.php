@@ -50,9 +50,9 @@
         var postData ={"school_number":school_number,'password':password};
         $.post(url,postData,function (result) {
             if(result.error === 1 ){
-                layer.msg(result.msg,function () {
-                    location.href = "{{ url('/') }}";
-                });
+                layer.msg(result.msg);
+                location.href = "{{ url('/') }}";
+
             }else if (result.error === 2 ){
                 layer.alert(result.msg,function () {
                     location.href = "{{ url('user/activate') }}";

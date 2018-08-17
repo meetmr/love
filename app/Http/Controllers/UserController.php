@@ -43,4 +43,8 @@ class UserController extends Controller
             return json_encode($state);
         }
     }
+    public function outlogin(){
+        session(['user'=>null]);
+        return redirect('/');
+    }
 }
