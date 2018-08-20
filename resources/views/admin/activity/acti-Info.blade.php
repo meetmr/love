@@ -40,7 +40,7 @@
                 <tbody>
                 @foreach($activits as $activit)
                         <tr  style="text-align: center">
-                            <td>  <a title="活动名单" onclick="x_admin_show('活动名单','/admin/activity/info/{{$activit->id}}',800,500)", href="javascript:;"> <span style="color: #2a88bd">{{ $activit->activity_name }}</span> </a></td>
+                            <td>  <a title="活动名单" onclick="x_admin_show('活动名单','/admin/activity/info/{{$activit->id}}',500,500)", href="javascript:;"> <span style="color: #2a88bd">{{ $activit->activity_name }}</span> </a></td>
                         <td>{{ $activit->activity_content }} </td>
                         <td>{{ $activit->activity_type }} </td>
                         <td>{{ $activit->start_time }} </td>
@@ -57,7 +57,7 @@
                         </td>
                         <td class="td-manage" width="10">
                             <div class="layui-input-inline" >
-                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/activity/edit/{{$activit->id}}',800,600)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/activity/edit/{{$activit->id}}',1000,600)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{$activit->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
                             </div>
                         </td>

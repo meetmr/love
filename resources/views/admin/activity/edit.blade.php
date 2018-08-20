@@ -1,6 +1,6 @@
 ﻿@include('public.top')
 
-
+@include('UEditor::head')
 <body>
 
 <div class="x-body ">
@@ -112,11 +112,23 @@
 
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:500,initialFrameHeight:400,zIndex:0});
+    UE.getEditor('content',{initialFrameWidth:800,initialFrameHeight:400,zIndex:0});
 
-
+    ue.ready(function() {
+        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+    });
 
 </script>
+<!-- 实例化编辑器 -->
+{{--<script type="text/javascript">--}}
+    {{--var ue = UE.getEditor('container');--}}
+
+    {{--initialFrameWidth:900,--}}
+        {{--initialFrameHeight : 350,//文本框宽和高--}}
+        {{----}}
+{{--</script>--}}
+
+
 </body>
 
 </html>

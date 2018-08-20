@@ -14,9 +14,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js "></script>
     <script src="{{ asset('/admin/lib/layui/layui.js') }}" charset="utf-8"></script>
     <script type="text/javascript" src="{{ asset('/admin/js/xadmin.js') }}"></script>
-    <script src="{{asset('/ueditor/ueditor.config.js')}}"></script>
-    <script src="{{asset('/ueditor/ueditor.all.min.js')}}"></script>
-    <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
