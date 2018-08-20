@@ -1,6 +1,8 @@
+@include('index.public.top')
+<body class="page-action">
 
-@include('index.public.head')
-
+<div class="wraper-bg">
+    @include('index.public.head')
     <div class="login-panel">
         <div class="login pure-g">
             <div class="box login pure-u-1 pure-u-md-13-24" style="margin: 0 auto">

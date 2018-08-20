@@ -31,7 +31,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="{:url('index/personnel/adminList')}">
+                        <a _href="{{ url('admin/activity/index') }}">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>活动列表</cite>
                         </a>

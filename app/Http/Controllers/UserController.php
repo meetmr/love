@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-
+use App\Activity;
+use App\Participate;
 class UserController extends Controller
 {
     //完成激活页面
@@ -46,5 +47,51 @@ class UserController extends Controller
     public function outlogin(){
         session(['user'=>null]);
         return redirect('/');
+    }
+    public function enroll($id){
+        $id = intval($id);
+        $activity = Activity::find($id);
+        if($activity == null){
+            return redirect('/');
+        }
+        $activity = $activity->toArray();
+        return view('index.user.action-enroll', [
+            'title' =>  '爱心社-'.$activity['activity_name'].'报名',
+            'activity' =>$activity
+        ]);
+    }
+    public function cheenroll(Request $request){
+        $data = $request->all();
+        $participate = new Participate();
+        $participate->ac_id = $data['a_id'];
+        $participate->u_id = session('user.id');
+        $participate->name = $data['user_name'];
+        $participate->school_number = $data['school_number'];
+        $participate->class = $data['class1'];
+        $participate->department = $data['department'];
+        $count = countCheenroll($data['a_id']);
+        $r_count = Activity::find($data['a_id'])->toArray()['number'];
+        if($count == $r_count){
+            $state = [
+                'error' => 0,
+                'msg'=> '人数已满'
+            ];
+            return json_encode($state);
+        }
+        $info = $participate->save();
+        if($info){
+
+            $state = [
+                'error' => 1,
+                'msg'=> '报名成功'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '报名失败'
+            ];
+            return json_encode($state);
+        }
     }
 }

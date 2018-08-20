@@ -1,5 +1,8 @@
-﻿@include('index.public.head')
+﻿@include('index.public.top')
+<body class="page-action"  id="wraper-bg">
 
+<div id="wraper-bg" class="wraper-bg">
+	@include('index.public.head')
 <div class="splash-wrap">
 		<div class="splash">
 			<div class="splash-head pure-g">
@@ -31,218 +34,25 @@
 		</div>
 	</div>
 
-	<div class="hyperlinks-wrap">
-		<div class="hyperlinks pure-g">
-			<span class="pure-u-1">
-				<a href="//scitc.com.cn/">
-					<img src="/index/picture/reduce-red.png">
-				</a>
-			</span>
-		</div>
-	</div>
 
 	<div class="box-content-wraper">
 		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
+			@foreach( $activitys as $activity)
+				<div class="item pure-g">
+					<div class="info pure-u-1-1 pure-u-md-3-24">
+						<div class="time">{{ $activity->start_time}}</div>
+						<div class="type">{{ $activity->activity_type}}</div>
+					</div>
+					<div class="content pure-u-1-1 pure-u-md-19-24">
+						<div class="title">{{ $activity->activity_name}}</div>
+						<div class="sub">{{ $activity->activity_content}}</div>
+						<a href="/action/{{$activity->id}}" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
+					</div>
 				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-						10月12日上午——大学对我的改变
-						10月12日上午——大学对我的改变
-						10月12日上午——大学对我的改变
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class="pure-button pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="box-list">
-
-			<div class="item pure-g">
-				<div class="info pure-u-1-1 pure-u-md-3-24">
-					<div class="time">2017-10-12 00:00</div>
-					<div class="type">竞赛</div>
-				</div>
-				<div class="content pure-u-1-1 pure-u-md-19-24">
-					<div class="title">5分钟个人演讲 ——大学对我的改变</div>
-					<div class="sub">5分钟个人演讲
-						——大学对我的改变
-
-						10月12日上午</div>
-					<a  id="buttt" href="./detail.jsp?activityID=4087E313965240ECAF732460BC60E303" class=" pure-input-1 pure-button-primary">活动详情</a>
-				</div>
-			</div>
-
+			@endforeach
 		</div>
 	</div>
+
 </div>
 
 @include('index.public.footer')

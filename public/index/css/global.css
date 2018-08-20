@@ -4,7 +4,6 @@ html {
   height: 100%;
   width: 100%;
   min-width: 320px;
-  background: url("/index/picture/timg.jpg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
@@ -15,7 +14,7 @@ html {
 .pure-menu-link:hover,
 .pure-menu-link:focus {
   background: transparent;
-  color: #ea3a54;
+  color: #159aea;
 }
 .pure-form input[type="text"],
 .pure-form input[type="password"],
@@ -37,25 +36,25 @@ a {
   transition: color 0.3s;
 }
 .page-index .wraper-bg {
-  background: url("/index/picture/bei.jpg");
+  background: url("/index/images/young.svg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
 }
 .page-login .wraper-bg {
-  background: url("/index/picture/grass.svg");
+  background: url("/index/images/grass.svg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
 }
 .page-user .wraper-bg {
-  background: url("/index/picture/swing.svg");
+  background: url("/index/images/swing.svg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
 }
 .page-action .wraper-bg {
-  background: url("/index/picture/soft.svg");
+  background: url("/index/images/a768e9076923a0e23b3b62d9159c0523.jpg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
@@ -67,7 +66,7 @@ a {
   background-position: center;
 }
 .page-words .wraper-bg {
-  background: url("/index/picture/green.svg");
+  background: url("/index/images/green.svg");
   background-size: cover;
   background-color: #fff;
   background-position: center;
@@ -171,7 +170,7 @@ a {
   box-shadow: 0px 1px 3px 0px #cbcbcb;
 }
 .box-content-wraper .box-list {
-  max-width: 50em;
+  max-width: 52em;
   margin: 0 auto;
   padding-bottom: 3em;
 }
@@ -180,20 +179,14 @@ a {
   margin-top: 1em;
   background: #fff;
   padding: 0.6em 2em;
-  box-shadow: 0px 3px 3px 0px #cbcbcb;
+  box-shadow: 0px 1px 3px 1px #cbcbcb;
   text-align: center;
+  border-radius: 0.45em;
 }
 .box-content-wraper .box-list .item h3 {
   font-family: "sans-serif";
   font-weight: lighter;
   font-size: 1.4em;
-}
-#buttt{
-  margin-top: 2em;
-}
-
-.pure-u-1-1{
-  margin-top: 0.5em;
 }
 .box-content-wraper .box-list .item.ctrl {
   text-align: left;
@@ -262,7 +255,7 @@ a {
 }
 .hyperlinks-wrap {
   padding: 3.6em 0;
-  background: rgba(255,255,255,0.6);
+
 }
 .hyperlinks-wrap .hyperlinks {
   position: relative;
@@ -281,7 +274,8 @@ a {
 .login-panel {
   max-width: 48em;
   margin: 0 auto;
-  padding: 6em 2em 5em;
+  padding: 6em 2em 9em;
+  background-image: url("/images/welcome.png");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: auto 8em;
@@ -304,7 +298,9 @@ a {
 .login-panel .box form label {
   color: #666;
 }
+.login-panel .login.pure-g {
 
+}
 .login-panel .box.login {
   background: #fff;
 }
@@ -481,10 +477,12 @@ a {
 .footer {
   text-align: center;
   padding: 2.4em 0;
+  background: url("/index/images/young.svg");
+
 }
 .footer .text {
-  font-size: 1em;
-  color: #e5597f;
+  font-size: 0.8em;
+  color: #000000;
 }
 @media screen and (max-width: 48em) {
   .home-menu {
@@ -549,8 +547,4 @@ a {
   .splash-wrap .splash-subhead {
     display: none !important;
   }
-}
-
-.login{
-  border:0;
 }

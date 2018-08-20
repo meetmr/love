@@ -18,7 +18,8 @@ Route::post('register','IndexController@cheregister');
 Route::post('login','IndexController@chelogin');
 Route::get('admin/login','Admin\IndexController@login');
 Route::post('admin/login','Admin\IndexController@chelogin');
-
+Route::get('action','IndexController@action');
+Route::get('action/{id}','IndexController@activatecheInfo');
 
 Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=>'Admin'],function (){
     Route::get('index', 'IndexController@index');
@@ -29,14 +30,20 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
     Route::get('user/{id}/edit', 'UserController@edit');
     Route::post('user/edit', 'UserController@cheedit');
     Route::get('outlogin', 'UserController@outlogin');
-
-
+    //活动相关
+    Route::get('activity/index', 'ActivityController@index');
+    Route::get('activity/add', 'ActivityController@add');
+    Route::post('activity/add', 'ActivityController@cheAdd');
+    Route::get('activity/info{id}', 'ActivityController@info');
 });
 
 
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::get('activate', 'UserController@activate');
     Route::get('outlogin', 'UserController@outlogin');
+    Route::get('enroll/{id}', 'UserController@enroll');
+    Route::post('enroll', 'UserController@cheenroll');
     Route::post('activate','UserController@activateche');
+
 
 });

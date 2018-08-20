@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
-
+use App\Activity;
 class IndexController extends Controller
 {
     //
     public function index(){
-
+        $activitys = Activity::where('is_over','=',0)->orderBy('id','desc')->get();
         return view('index.index.index',[
-            'title' =>  '爱心社-川信职院'
+            'title' =>  '爱心社-川信职院',
+            'activitys' =>$activitys
         ]);
     }
     public function register(){
@@ -129,5 +130,22 @@ class IndexController extends Controller
             'msg'=> '登陆成功'
         ];
         return json_encode($state);
+    }
+    public function action(){
+        return view('index.index.action', [
+            'title' =>  '爱心社-活动列表'
+        ]);
+    }
+    public function activatecheInfo($id){
+        $id = intval($id);
+        $activity = Activity::find($id);
+        if($activity == null){
+            return redirect('/');
+        }
+        $activity = $activity->toArray();
+        return view('index.index.action-info', [
+            'title' =>  '爱心社-'.$activity['activity_name'].'活动详情',
+            'activity' =>$activity
+        ]);
     }
 }
