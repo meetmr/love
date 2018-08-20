@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PHPMall</title>
+    <title>后台管理</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -14,6 +14,9 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js "></script>
     <script src="{{ asset('/admin/lib/layui/layui.js') }}" charset="utf-8"></script>
     <script type="text/javascript" src="{{ asset('/admin/js/xadmin.js') }}"></script>
+    <script src="{{asset('/ueditor/ueditor.config.js')}}"></script>
+    <script src="{{asset('/ueditor/ueditor.all.min.js')}}"></script>
+    <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>

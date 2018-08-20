@@ -5,6 +5,7 @@
     <xblock>
         <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
         <button class="layui-btn" onclick="x_admin_show('添加订单','{:url(\'index/Order/addOrder\')}',600,600)"><i class="layui-icon"></i>添加</button>
+        <a href="/admin/activity/export/{{$id}}" class="layui-btn" style="background: #FF5722" ><i style="color:red" class="iconfont nav_right"></i>  导出活动名单</a>
 
         <span class="x-right" style="line-height:40px">共{{$count}}名同学报名</span>
     </xblock>
@@ -30,7 +31,7 @@
                     <td>{{$value->class}}</td>
                     <td class="td-manage" width="10" style="text-align: center">
                         <div class="layui-input-inline" >
-                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{$value->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
                         </div>
                     </td>
                 </tr>
@@ -56,12 +57,11 @@
                 elem: '#end' //指定元素
             });
         });
-        //更改状态
         /*删除*/
         function delete_user(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
-                    url:"{{url('admin/user/delete')}}",
+                    url:"{{url('admin/activity/deleteA')}}",
                     type:"POST",
                     dataType:"json",
                     data:{id:id, }, //id},
@@ -76,12 +76,25 @@
                 });
             });
         }
-        function foo() {
-            if($("#key").val() ===''){
-                layer.msg('请输入点内容呗');
-                return false;
-            }
+        function export1(id) {
+            layer.confirm('导出活动名单？',function(index){
+                $.ajax({
+                    url:"{{url('admin/activity/export')}}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{id:id, }, //id},
+                    success:function (res) {
+                        if (res.error === 1){
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:1000});
+                        }else {
+                            layer.alert("删除失败", {icon: 5});
+                        }
+                    }
+                });
+            });
         }
     </script>
+</div>
 </body>
 </html>

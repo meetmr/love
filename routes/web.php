@@ -34,7 +34,18 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
     Route::get('activity/index', 'ActivityController@index');
     Route::get('activity/add', 'ActivityController@add');
     Route::post('activity/add', 'ActivityController@cheAdd');
-    Route::get('activity/info{id}', 'ActivityController@info');
+    Route::get('activity/info/{id}', 'ActivityController@info');
+    Route::get('activity/edit/{id}', 'ActivityController@edit');
+    Route::post('activity/edit', 'ActivityController@cheedit');
+    Route::post('activity/delete', 'ActivityController@delete');
+    Route::post('activity/over', 'ActivityController@over');
+    Route::post('activity/deleteA', 'ActivityController@deleteA');
+    Route::post('activity/deleteA', 'ActivityController@deleteA');
+
+    //生成活动名单
+    Route::get('activity/export/{id}', 'ActivityController@export');
+
+
 });
 
 

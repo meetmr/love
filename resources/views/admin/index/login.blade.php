@@ -3,7 +3,7 @@
 <body class="login-bg">
 
     <div class="login layui-anim layui-anim-up">
-        <div class="message">恒易管理2.0-后台管理登录</div>
+        <div class="message">爱心社-后台管理登录</div>
         <div id="darkbannerwrap"></div>
 
         <form method="post" class="layui-form" >

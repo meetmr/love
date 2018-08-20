@@ -132,8 +132,10 @@ class IndexController extends Controller
         return json_encode($state);
     }
     public function action(){
+        $activityRow = Activity::where('is_over','=',1)->orderBy('id','desc')->get();
         return view('index.index.action', [
-            'title' =>  '爱心社-活动列表'
+            'title' =>  '爱心社-往期活动',
+            'activityRow'   =>$activityRow
         ]);
     }
     public function activatecheInfo($id){

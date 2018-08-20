@@ -20,7 +20,7 @@
 							手牵手齐伸援手！
 						</p>
 						<p class="enters">
-							<a href="action.jsp" class="pure-button pure-button-primary">活动中心</a>
+							<a href="{{ url('action') }}" class="pure-button pure-button-primary">往期活动</a>
 							<a href="about.html" class="pure-button pure-button-primary">关于我们 :)</a>
 						</p>
 					</div>

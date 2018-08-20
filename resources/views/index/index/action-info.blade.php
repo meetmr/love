@@ -1,4 +1,13 @@
 @include('index.public.top')
+<style>
+    .detail  img{
+        display:block;margin:0 auto;padding:10px; /* max-width:650px */
+    }
+    /*以下为兼容手机代码*/
+    @media(max-width:760px){
+        .detail  img{max-width: 100%;height: auto;width: auto\9;}
+    }
+</style>
 <body class="page-action"  id="wraper-bg">
 
 <div id="wraper-bg" class="wraper-bg">
@@ -10,7 +19,7 @@
             </div>
             <div class="content">
                 <p class="message"><span class="trans">“</span>{{ $activity['activity_name'] }}
-                    10月12日上午<span class="trans">”</span></p>
+                   <span class="trans">”</span></p>
                 <form class="pure-form pure-form-aligned" action="/ActivityServlet" method="post">
                     <fieldset>
                         <legend>活动信息</legend>
@@ -47,7 +56,15 @@
                             <label for="name">已报人数</label>
                             <span class="pure-form-message-inline">  {{ countCheenroll($activity['id']) }}</span>
                         </div>
-
+                        @if($activity['is_over'] === 1)
+                        <div class="pure-control-group">
+                            <label for="name">活动总结</label>
+                            <div class="detail">
+                                {!! $activity['summary']!!}
+                            </div>
+                        </div>
+                        @endif
+                        @if($activity['is_over'] !== 1)
                         <div class="pure-controls">
                             @if( is_cheenroll($activity['id']))
                                 <a  disabled  class="pure-button pure-button-">已报名</a>
@@ -63,7 +80,7 @@
                                     <a href="{{url('login')}}" class="pure-button pure-button-primary">登录后报名</a>
                                 @endif
                             @endif
-
+                            @endif
 
                         </div>
                     </fieldset>

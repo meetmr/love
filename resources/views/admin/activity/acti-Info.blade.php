@@ -34,14 +34,13 @@
                     <th style="text-align: center" width="40">限制人数</th>
                     <th style="text-align: center" width="20">报名人数</th>
                     <th style="text-align: center" width="20">是否结束</th>
-                    <th style="text-align: center" width="20">活动总结</th>
                     <th style="text-align: center" width="20">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($activits as $activit)
                         <tr  style="text-align: center">
-                            <td>  <a title="活动名单" onclick="x_admin_show('活动名单','/admin/activity/info{{$activit->id}}',1000,500)", href="javascript:;"> <span style="color: #2a88bd">{{ $activit->activity_name }}</span> </a></td>
+                            <td>  <a title="活动名单" onclick="x_admin_show('活动名单','/admin/activity/info/{{$activit->id}}',800,500)", href="javascript:;"> <span style="color: #2a88bd">{{ $activit->activity_name }}</span> </a></td>
                         <td>{{ $activit->activity_content }} </td>
                         <td>{{ $activit->activity_type }} </td>
                         <td>{{ $activit->start_time }} </td>
@@ -51,17 +50,15 @@
                         <td>{{ showMsg($activit->is_over) }}</td>
                         <td>
                             @if($activit->is_over == 0)
-                                未结束
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" onclick="over1(1,'{{$activit->id}}')">未结束</a>
                             @else
-                                结束
+                                <a  class="layui-btn layui-btn-danger layui-btn-xs"  onclick="over1(0,'{{$activit->id}}')" >结束</a>
                             @endif
-
                         </td>
-                        <td>{{ $activit->summary }}</td>
                         <td class="td-manage" width="10">
                             <div class="layui-input-inline" >
-                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/user/edit',500,500)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/activity/edit/{{$activit->id}}',800,600)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{$activit->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
                             </div>
                         </td>
                     </tr>
@@ -92,10 +89,10 @@
         function delete_user(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
-                    url:"{{url('admin/user/delete')}}",
+                    url:"{{url('/admin/activity/delete')}}",
                     type:"POST",
                     dataType:"json",
-                    data:{id:id, }, //id},
+                    data:{id:id,}, //id},
                     success:function (res) {
                         if (res.error === 1){
                             $(obj).parents("tr").remove();
@@ -107,11 +104,24 @@
                 });
             });
         }
-        function foo() {
-            if($("#key").val() ===''){
-                layer.msg('请输入点内容呗');
-                return false;
-            }
+        function over1(s,id) {
+            layer.confirm('是否设置结束？',function(index){
+                $.ajax({
+                    url:"{{url('/admin/activity/over')}}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{s:s,id:id,}, //id},
+                    success:function (res) {
+                        if (res.error === 1){
+                            layer.msg('设置成功!',{icon:1,time:1000});
+
+                            window.location.reload();
+                        }else {
+                            layer.alert("设置失败", {icon: 5});
+                        }
+                    }
+                });
+            });
         }
     </script>
 </body>

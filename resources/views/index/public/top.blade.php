@@ -9,5 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/index/css/global.css')}}">
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{asset('/layer/layer.js')}}"></script>
+    <script src="{{asset('/ueditor/ueditor.config.js')}}"></script>
+    <script src="{{asset('/ueditor/ueditor.all.min.js')}}"></script>
+    <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
