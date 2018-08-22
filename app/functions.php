@@ -1,5 +1,6 @@
 <?php
 use App\Participate;
+use App\User;
 /**
  * Created by PhpStorm.
  * User: moTzxx
@@ -29,4 +30,11 @@ function is_cheenroll($a_id){
 function countCheenroll($a_id){
     $info = Participate::where('ac_id','=',$a_id)->get();
     return (count($info));
+}
+function getUserName($u_id){
+    $info = User::where('id','=',$u_id)->get()->toArray();
+    return $info[0]['user_name'];
+}
+function getTime($time){
+    return date('Y-m-d :H:i:s',$time);
 }

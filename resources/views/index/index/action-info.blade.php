@@ -52,11 +52,15 @@
                             <label for="name">地点安排</label>
                             <span class="pure-form-message-inline">{{ $activity['place'] }}</span>
                         </div>
+                        @if($activity['is_over'] !== 1)
+
                         <div class="pure-control-group">
                             <label for="name">已报人数</label>
                             <span class="pure-form-message-inline">  {{ countCheenroll($activity['id']) }}</span>
                         </div>
-                        @if($activity['is_over'] === 1)
+                        @endif
+
+                    @if($activity['is_over'] === 1)
                         <div class="pure-control-group">
                             <label for="name">活动总结</label>
                             <div class="detail">

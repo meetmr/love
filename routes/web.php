@@ -20,6 +20,7 @@ Route::get('admin/login','Admin\IndexController@login');
 Route::post('admin/login','Admin\IndexController@chelogin');
 Route::get('action','IndexController@action');
 Route::get('action/{id}','IndexController@activatecheInfo');
+Route::get('words','UserController@words');
 
 Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=>'Admin'],function (){
     Route::get('index', 'IndexController@index');
@@ -45,7 +46,6 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
     //生成活动名单
     Route::get('activity/export/{id}', 'ActivityController@export');
 
-
 });
 
 
@@ -55,6 +55,6 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::get('enroll/{id}', 'UserController@enroll');
     Route::post('enroll', 'UserController@cheenroll');
     Route::post('activate','UserController@activateche');
-
+    Route::post('words','UserController@chewords');
 
 });

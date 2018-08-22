@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Activity;
 use App\Participate;
+use App\Word;
 class UserController extends Controller
 {
     //完成激活页面
@@ -80,7 +81,6 @@ class UserController extends Controller
         }
         $info = $participate->save();
         if($info){
-
             $state = [
                 'error' => 1,
                 'msg'=> '报名成功'
@@ -93,5 +93,34 @@ class UserController extends Controller
             ];
             return json_encode($state);
         }
+    }
+    public function words(){
+        $words = Word::orderBy('time','desc')->paginate(15);
+        return view('index.user.words', [
+            'title'       =>  '爱心社-留言板',
+            'words'      =>$words
+        ]);
+    }
+    public function chewords(Request $request){
+        $content = $request->post('content');
+        $word = new Word();
+        $word->content = $content;
+        $word->u_id = session('user.id');
+        $word->time = time();
+        $info = $word->save();
+        if($info){
+            $state = [
+                'error' => 1,
+                'msg'=> '留言成功'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '留言失败'
+            ];
+            return json_encode($state);
+        }
+
     }
 }
