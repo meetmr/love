@@ -51,6 +51,10 @@ class UserController extends Controller
     }
     public function enroll($id){
         $id = intval($id);
+        $user = session('user');
+        if($user['is_serious'] == 0){
+            return redirect('user/activate');
+        }
         $activity = Activity::find($id);
         if($activity == null){
             return redirect('/');
@@ -95,6 +99,10 @@ class UserController extends Controller
         }
     }
     public function words(){
+        $user = session('user');
+        if($user['is_serious'] == 0){
+            return redirect('user/activate');
+        }
         $words = Word::orderBy('time','desc')->paginate(15);
         return view('index.user.words', [
             'title'       =>  '爱心社-留言板',
