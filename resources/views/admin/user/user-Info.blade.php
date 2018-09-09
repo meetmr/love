@@ -24,7 +24,10 @@
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>
         </form>
     </div>
+    <span  style="text-align: center;margin-left: 3em" >共{{$count}}名同学</span>
+
 </xblock>
+
 
 <div class="x-body" >
 

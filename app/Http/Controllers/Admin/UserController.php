@@ -17,8 +17,10 @@ class UserController extends BaseController
             ]);
         }
         $userInfo = User::paginate(15);
+        $count = count($userInfo);
         return view('admin.user.user-Info',[
-            'users' =>  $userInfo
+            'users' =>  $userInfo,
+            'count' =>  $count
         ]);
     }
     public function delete(Request $request){
