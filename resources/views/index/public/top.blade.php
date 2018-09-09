@@ -13,4 +13,6 @@
     <script src="{{asset('/ueditor/ueditor.all.min.js')}}"></script>
     <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <script type="text/javascript" src="{{asset('/js/function.js')}}"></script>
 </head>

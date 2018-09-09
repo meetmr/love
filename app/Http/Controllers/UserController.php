@@ -99,10 +99,14 @@ class UserController extends Controller
         }
     }
     public function words(){
-        $user = session('user');
-        if($user['is_serious'] == 0){
-            return redirect('user/activate');
+
+        if(session('user')){
+            $user = session('user');
+            if($user['is_serious'] == 0) {
+                return redirect('user/activate');
+            }
         }
+
         $words = Word::orderBy('time','desc')->paginate(15);
         return view('index.user.words', [
             'title'       =>  '爱心社-留言板',
