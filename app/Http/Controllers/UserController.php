@@ -114,6 +114,13 @@ class UserController extends Controller
     }
     public function chewords(Request $request){
         $content = $request->post('content');
+        if(empty($content)){
+            $state = [
+                'error' => 0,
+                'msg'=> '不能为空'
+            ];
+            return json_encode($state);
+        }
         $word = new Word();
         $word->content = $content;
         $word->u_id = session('user.id');

@@ -75,16 +75,20 @@
 </div>
 
 @include('index.public.footer')
+</body>
+</html>
 <script>
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     function sub() {
-       var content = $("#content").val();
-       alert(content);
-       return;
-       if(content == ''){
-           layer.msg('请输入点内容');
-           return false;
-       }
+        var content = $("#content").val();
+        if(content == ''){
+            layer.msg('请输入点内容');
+            return false;
+        }
+        if(content.length <= 5){
+            layer.msg('内容不能低于5个字符');
+            return false;
+        }
         var url = "{{url('user/words')}}";
         var postData ={"content":content};
         $.post(url,postData,function (result) {
@@ -101,6 +105,4 @@
             }
         },"json")
     }
-</style>
-</body>
-</html>
+</script>
