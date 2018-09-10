@@ -106,7 +106,6 @@ class UserController extends Controller
                 return redirect('user/activate');
             }
         }
-
         $words = Word::orderBy('time','desc')->paginate(15);
         return view('index.user.words', [
             'title'       =>  '爱心社-留言板',
@@ -118,6 +117,7 @@ class UserController extends Controller
         $word = new Word();
         $word->content = $content;
         $word->u_id = session('user.id');
+        $word->name = session('user.user_name');
         $word->time = time();
         $info = $word->save();
         if($info){

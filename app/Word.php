@@ -8,5 +8,5 @@ class Word extends Model
 {
     public $table = 'words';
     public $timestamps = false;
-    protected $fillable = ['u_id','content','time'];
+    protected $fillable = ['u_id','content','time','name'];
 }

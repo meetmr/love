@@ -41,7 +41,7 @@
                 @foreach($activits as $activit)
                         <tr  style="text-align: center">
                             <td>  <a title="活动名单" onclick="x_admin_show('活动名单','/admin/activity/info/{{$activit->id}}',800,500)" href="javascript:;"> <span style="color: #2a88bd">{{ $activit->activity_name }}</span> </a></td>
-                        <td>{{ $activit->activity_content }} </td>
+                        <td>{{ str_limit($activit->activity_content,20,'...') }} </td>
                         <td>{{ $activit->activity_type }} </td>
                         <td>{{ $activit->start_time }} </td>
                         <td>{{ $activit->participant }} </td>

@@ -42,13 +42,15 @@
         <input type="text" id="cost_name" name="emal" value="{{$user['emal']}}" lay-verify="required" autocomplete="off" class="layui-input" >
       </div>
     </div>
-    {{--<div class="layui-form-item">--}}
-      {{--<label for="cost_name" class="layui-form-label">密码</label>--}}
-      {{--<span style="color: red">*</span>--}}
-      {{--<div class="layui-input-inline">--}}
-        {{--<input type="password" id="cost_name" name="password"  value="{{$user['password']}}"lay-verify="required" autocomplete="off" class="layui-input" >--}}
-      {{--</div>--}}
-    {{--</div>--}}
+    @if(session('user.school_number') == '16301074')
+    <div class="layui-form-item">
+      <label for="cost_name" class="layui-form-label">管理员</label>
+      <span style="color: red">*</span>
+      <div class="layui-input-inline">
+        <input type="password" id="cost_name" name="password"  value="{{$user['password']}}"lay-verify="required" autocomplete="off" class="layui-input" >
+      </div>
+      @endif
+    </div>
 
     <div class="layui-form-item">
       <label class="layui-form-label"></label>

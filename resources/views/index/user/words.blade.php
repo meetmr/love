@@ -16,13 +16,16 @@
     <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+<style>
+    textarea{ resize:none;}
+</style>
 <body class="page-words">
 
 <div class="wraper-bg">
 
     @include('index.public.head')
 
-    <div class="box-content-wraper">
+    <div class="box-content-wraper"  style="padding-bottom:12em">
         <div class="box-content">
             <div class="content" style="padding-bottom: 1em">
                 <h3> 留言板 </h3>
@@ -32,9 +35,9 @@
                     <form method="post">
                         <input type="hidden" value="save" name="method" />
 
-                        <textarea cols="70" rows="5" id="content" name="content"></textarea> <br />
+                        <textarea  rows="5" style="width:99%" class="current" id="content" name="content"></textarea> <br />
 
-                        <button type="button" onclick="sub()" class="pure-button pure-button-primary">提交</button>
+                        <button type="button" onclick="sub()"  class="pure-button pure-button-primary">提交</button>
                     </form>
                 </div>
                 @else
@@ -50,7 +53,10 @@
                     <img class="head-img mt" src="/index/images/user.jpg"  style="border-radius: 50% ;">
                     <div class="flexx"><div class="user-info">
                             <img class="head-img mi" src="/index/images/user.jpg" style="border-radius: 50%">
-                            <span class="name">{{ getUserName($word->u_id) }}</span>
+                            <span class="name">
+                                {{ $word->name }}
+                            </span>
+
                             <div class="message">{{ $word->content }}</div>
                             <div class="info"><span class="count">{{ getTime($word->time) }}</span>
                             </div>
@@ -63,13 +69,9 @@
                     {{ $words->links() }}
 
                 </div>
-
-
-
             </div>
         </div>
     </div>
-
 </div>
 
 @include('index.public.footer')
@@ -77,6 +79,8 @@
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     function sub() {
        var content = $("#content").val();
+       alert(content);
+       return;
        if(content == ''){
            layer.msg('请输入点内容');
            return false;
@@ -97,6 +101,6 @@
             }
         },"json")
     }
-</script>
+</style>
 </body>
 </html>

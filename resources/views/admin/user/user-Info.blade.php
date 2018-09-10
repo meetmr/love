@@ -38,6 +38,7 @@
                 <tr>
                     <th style="text-align: center" width="80">学号</th>
                     <th style="text-align: center" width="100">姓名</th>
+                    <th style="text-align: center" width="100">管理员</th>
                     <th style="text-align: center" width="40">邮箱</th>
                     <th style="text-align: center" width="20">是否验证</th>
                     <th style="text-align: center" width="50" >系部</th>
@@ -49,15 +50,30 @@
                     @foreach($users  as $value)
                         <tr  style="text-align: center">
                         <td>{{ $value->school_number }}</td>
-                        <td>{{ $value->user_name }}</td>
+                            <td>{{ $value->user_name }}</td>
+                            <td>
+                                @if($value->admin )
+                                是
+                                @else
+                                 否
+                                @endif
+                            </td>
                         <td>{{ $value->emal }}</td>
-                        <td>{{ $value->is_serious }}</td>
+                        <td>
+                            @if($value->is_serious)
+                                已验证
+                            @else
+                                <span style="color: red">未验证</span>
+                            @endif
+                        </td>
                         <td>{{ $value->department }}</td>
                         <td>{{ $value->class }}</td>
                         <td class="td-manage" width="10">
                             <div class="layui-input-inline" >
-                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/user/{{$value->id}}/edit',500,500)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{ $value->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                                @if($value->school_number !='16301074')
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/user/{{$value->id}}/edit',500,500)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{ $value->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -109,6 +125,27 @@
                 return false;
             }
         }
+
+        function admin(s,id) {
+            layer.confirm('是否更新权限？',function(index){
+                $.ajax({
+                    url:"{{url('/admin/activity/over')}}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{s:s,id:id,}, //id},
+                    success:function (res) {
+                        if (res.error === 1){
+                            layer.msg('设置成功!',{icon:1,time:1000});
+
+                            window.location.reload();
+                        }else {
+                            layer.alert("设置失败", {icon: 5});
+                        }
+                    }
+                });
+            });
+        }
     </script>
+
 </body>
 </html>
