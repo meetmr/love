@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Word;
+use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
-
+use App\Replys;
 class UserController extends BaseController
 {
     public function userInfo(Request $request){
@@ -73,5 +75,60 @@ class UserController extends BaseController
     public function outlogin(){
         session(['admin'=>null]);
         return redirect('/');
+    }
+
+    //留言管理
+    public function replyList(){
+        $words = Word::orderBy('time','edsc')->paginate(15);
+        return view('admin.user.replys-info',[
+            'words'    =>  $words
+        ]);
+    }
+
+    public function replyDelete(Request $request){
+        $id = $request->post('id');
+        $info = Word::destroy($id);
+        $state = [
+            'error' => 1,
+            'msg'=> '删除成功'
+        ];
+        if($info){
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '删除失败'
+            ];
+            return json_encode($state);
+        }
+    }
+
+    public function huifu($id){
+        $word =  Word::find($id)->toArray();
+          return view('admin.user.huifu-info',[
+            'word'    =>  $word
+        ]);
+    }
+    public function chehuifu(Request $request){
+        $data = $request->post();
+        $replys = new Replys;
+        $replys->centent = $data['centent'];
+        $replys->w_id = $data['w_id'];
+        $replys->time = time();
+        $replys->name = session('admin.user_name');
+        $info = $replys->save();
+        if($info){
+            $state = [
+                'error' => 1,
+                'msg'=> '回复成功'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '回复失败'
+            ];
+            return json_encode($state);
+        }
     }
 }

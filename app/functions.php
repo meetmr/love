@@ -14,6 +14,7 @@ use App\User;
  * @param string $message 提示信息
  * @param array $data 返回数据
  */
+use App\Replys;
 function showMsg($id){
    echo $id.'a';
 }
@@ -37,4 +38,8 @@ function getUserName($u_id){
 }
 function getTime($time){
     return date('Y-m-d :H:i:s',$time);
+}
+function getReplys($w_id){
+    $replys = Replys::where('w_id','=',$w_id)->get();
+    return $replys;
 }

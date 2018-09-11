@@ -46,6 +46,12 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
     //生成活动名单
     Route::get('activity/export/{id}', 'ActivityController@export');
 
+    //留言管理
+    Route::get('replys/list', 'UserController@replyList');
+    Route::POST('replys/delete', 'UserController@replyDelete');
+    Route::get('replys/{id}/huifu', 'UserController@huifu');
+    Route::post('replys/huifu', 'UserController@chehuifu');
+
 });
 
 

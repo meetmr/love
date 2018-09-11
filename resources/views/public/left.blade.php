@@ -20,6 +20,12 @@
                             <cite>组织列表</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="{{url('admin/replys/list')}}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>留言管理</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
 
