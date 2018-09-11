@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 use App\Activity;
 use App\Participate;
 use App\Word;
+use App\Comment;
 class UserController extends Controller
 {
     //完成激活页面
@@ -141,5 +143,28 @@ class UserController extends Controller
             return json_encode($state);
         }
 
+    }
+    public function comment(Request $request){
+
+        $data = $request->post();
+        $comment = new Comment();
+        $comment->a_id = $data['id'];
+        $comment->name = session('user.user_name');
+        $comment->content = $data['content'];
+        $comment->time = time();
+        $info = $comment->save();
+        if($info){
+            $state = [
+                'error' => 1,
+                'msg'=> '留言成功'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '留言失败'
+            ];
+            return json_encode($state);
+        }
     }
 }

@@ -139,6 +139,7 @@ class IndexController extends Controller
         ]);
     }
     public function activatecheInfo($id){
+
         $id = intval($id);
         $activity = Activity::find($id);
         if($activity == null){

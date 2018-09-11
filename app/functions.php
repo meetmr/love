@@ -15,6 +15,7 @@ use App\User;
  * @param array $data 返回数据
  */
 use App\Replys;
+use App\Comment;
 function showMsg($id){
    echo $id.'a';
 }
@@ -42,4 +43,9 @@ function getTime($time){
 function getReplys($w_id){
     $replys = Replys::where('w_id','=',$w_id)->get();
     return $replys;
+}
+
+function geComment($a_id){
+    $comment = Comment::where('a_id','=',$a_id)->orderBy('time','desc')->get();
+    return $comment;
 }
