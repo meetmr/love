@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Replys;
 use App\User;
 use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
@@ -163,6 +164,28 @@ class UserController extends Controller
             $state = [
                 'error' => 0,
                 'msg'=> '留言失败'
+            ];
+            return json_encode($state);
+        }
+    }
+    public function replys(Request $request){
+        $data = $request->post();
+        $replys = new Replys();
+        $replys->centent = $data['content'];
+        $replys->w_id = $data['w_id'];
+        $replys->time = time();
+        $replys->name = session('user.user_name');
+        $info = $replys->save();
+        if($info){
+            $state = [
+                'error' => 1,
+                'msg'=> '回复成功'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '回复失败'
             ];
             return json_encode($state);
         }
