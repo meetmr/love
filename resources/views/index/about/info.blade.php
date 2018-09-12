@@ -4,9 +4,9 @@
 	<div id="wraper-bg" class="wraper-bg">
 	@include('index.public.head')
 <div class="splash-wrap">
-	<div class="box-content-wraper" style="margin-bottom: 5em">
+	<div class="box-content-wraper" style="margin-bottom: 5em;margin-top: 1em">
 		<div class="page-words">
-			<div class="box-list">
+			<div class="box-list" style="margin-bottom: 1em">
 				@foreach($abouts as $about)
 					<a href="/about/{{$about->id}}" >
 				<div class="item" style=" ">
