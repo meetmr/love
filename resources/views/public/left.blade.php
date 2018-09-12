@@ -15,9 +15,9 @@
                         </a>
                     </li >
                     <li>
-                        <a _href="{:url('index/personnel/adminList')}">
+                        <a _href="{{ url('admin/about/list') }}">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>组织列表</cite>
+                            <cite>相册管理</cite>
                         </a>
                     </li >
                     <li>
@@ -61,18 +61,6 @@
                         <a _href="{:url('index/task/inTask')}">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>系统配置</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="{:url('admin/Conf/index')}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>配置管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="{:url('admin/Conf/confList')}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>配置项</cite>
                         </a>
                     </li >
                 </ul>

@@ -21,7 +21,7 @@
 						</p>
 						<p class="enters">
 							<a href="{{ url('action') }}" class="pure-button pure-button-primary">往期活动</a>
-							<a href="about.html" class="pure-button pure-button-primary">关于我们 :)</a>
+							<a href="{{ url('about') }}" class="pure-button pure-button-primary">关于我们 :)</a>
 						</p>
 					</div>
 				</div>

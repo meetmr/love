@@ -119,6 +119,15 @@
     });
 
 </script>
+<!-- 实例化编辑器 -->
+{{--<script type="text/javascript">--}}
+    {{--var ue = UE.getEditor('container');--}}
+
+    {{--initialFrameWidth:900,--}}
+        {{--initialFrameHeight : 350,//文本框宽和高--}}
+        {{----}}
+{{--</script>--}}
+
 
 </body>
 

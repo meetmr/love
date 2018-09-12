@@ -34,8 +34,7 @@
                 <div class="nav pure-menu pure-menu-horizontal"  >
                     <form method="post">
                         <input type="hidden" value="save" name="method" />
-                        <textarea rows="5" style="width:99%;border: 1px rgba(234,58,84,0.57);border-radius: 1em" class="current" id="content" name="content"></textarea> <br />
-
+                        <textarea rows="5" style="width:99%;border-radius: 1em;outline:none;background-color: rgba(0,0,255,0)" class="current" id="content" name="content"></textarea> <br />
                         <button type="button" onclick="sub()"  class="pure-button pure-button-primary">提交</button>
                     </form>
                 </div>

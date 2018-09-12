@@ -22,6 +22,11 @@ Route::get('action','IndexController@action');
 Route::get('action/{id}','IndexController@activatecheInfo');
 Route::get('words','UserController@words');
 
+Route::get('about/{id}','AboutController@infoList');
+
+// 关于我们
+Route::get('about','AboutController@info');
+
 Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=>'Admin'],function (){
     Route::get('index', 'IndexController@index');
     Route::get('welcome', 'IndexController@welcome');
@@ -51,6 +56,14 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
     Route::POST('replys/delete', 'UserController@replyDelete');
     Route::get('replys/{id}/huifu', 'UserController@huifu');
     Route::post('replys/huifu', 'UserController@chehuifu');
+
+
+    // 关于我们
+    Route::get('about/list', 'AboutController@listInfo');
+    Route::get('about/add', 'AboutController@add');
+    Route::post('about/up', 'AboutController@upload');
+    Route::post('about/add', 'AboutController@cheadd');
+
 
 });
 

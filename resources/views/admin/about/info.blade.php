@@ -4,9 +4,9 @@
 <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
-        <a href="">成员管理</a>
+        <a href="">相册管理</a>
         <a>
-          <cite>成员列表</cite>
+          <cite>相册列表</cite>
         </a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
@@ -14,20 +14,9 @@
 </div>
 <xblock>
     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-    <button disabled class="layui-btn" onclick="x_admin_show('')"><i class="layui-icon"></i>添加</button>
-    <div class="layui-input-inline">
-        <form class="layui-form" action="{{ url('admin/user/info') }}" method="post" onsubmit="return foo();">
-            {{ csrf_field() }}
-            <div class="layui-input-inline">
-                <input type="text" name="key" id="key" autocomplete="off" placeholder="请输入学号或者姓名..." class="layui-input">
-            </div>
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>
-        </form>
-    </div>
-    <span  style="text-align: center;margin-left: 3em" ></span>
+    <button  class="layui-btn" onclick="x_admin_show('添加相册','{{url('admin/about/add')}}')"><i class="layui-icon"></i>添加</button>
 
 </xblock>
-
 
 <div class="x-body" >
 
@@ -36,32 +25,33 @@
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th style="text-align: center" width="80">内容</th>
+                    <th style="text-align: center" width="80">标题</th>
                     <th style="text-align: center" width="100">时间</th>
-                    <th style="text-align: center" width="100">姓名</th>
-                    <th style="text-align: center" width="50">操作</th>
+                    <th style="text-align: center" width="100">封面</th>
+                    <th style="text-align: center" width="100">内容</th>
+                    <th style="text-align: center" width="20">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($words  as $value)
                         <tr  style="text-align: center">
-                        <td style="text-align: left;width: 20%">{{ str_limit($value->content,40,'...') }}</td>
-                        <td>{{ getTime($value->time) }}</td>
-                        <td>{{ $value->name }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
                         <td class="td-manage" width="10">
                             <div class="layui-input-inline" >
-                                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('回复','/admin/replys/{{$value->id}}/huifu',500,300)"><i class="layui-icon layui-icon-edit"></i>回复</a>
-                                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'{{ $value->id}}')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"  onclick="x_admin_show('修改','/admin/activity/edit/',1000,500)"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" onclick="delete_user(this,'')" ><i class="layui-icon layui-icon-delete"></i>删除</a>
                             </div>
                         </td>
                     </tr>
-                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
     <div class="page">
-        {{ $words->links() }}
+
     </div>
     <script>
         $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
@@ -82,7 +72,7 @@
         function delete_user(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
-                    url:"{{url('admin/replys/delete')}}",
+                    url:"{{url('/admin/activity/delete')}}",
                     type:"POST",
                     dataType:"json",
                     data:{id:id,}, //id},
@@ -97,15 +87,8 @@
                 });
             });
         }
-        function foo() {
-            if($("#key").val() ===''){
-                layer.msg('请输入点内容呗');
-                return false;
-            }
-        }
-
-        function admin(s,id) {
-            layer.confirm('是否更新权限？',function(index){
+        function over1(s,id) {
+            layer.confirm('是否设置结束？',function(index){
                 $.ajax({
                     url:"{{url('/admin/activity/over')}}",
                     type:"POST",
@@ -124,6 +107,5 @@
             });
         }
     </script>
-
 </body>
 </html>

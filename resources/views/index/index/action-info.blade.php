@@ -33,12 +33,11 @@
             <div class="content">
                 <p class="message"><span class="trans">“</span>{{ $activity['activity_name'] }}
                    <span class="trans">”</span></p>
-                <form class="pure-form pure-form-aligned" action="/ActivityServlet" method="post">
                     <fieldset>
                         <legend>活动信息</legend>
                         <div class="pure-control-group">
                             <label for="name">详细内容</label>
-                            <span class="pure-form-message-inline">{{ $activity['activity_content'] }}</span>
+                            <span class="pure-form-message-inline" style="font-size: 1em">{{ $activity['activity_content'] }}</span>
                         </div>
 
                         <div class="pure-control-group">
@@ -75,7 +74,7 @@
 
                     @if($activity['is_over'] === 1)
                         <div class="pure-control-group">
-                            <label for="name">活动总结4</label>
+                            <label for="name">活动总结</label>
                             <div class="detail">
                                 {!! $activity['summary']!!}
                             </div>
@@ -101,7 +100,6 @@
 
                         </div>
                     </fieldset>
-                </form>
                 @if($activity['is_over'] === 1)
 
                     <div class="box-content">
@@ -112,7 +110,7 @@
                                     <form method="post">
                                         <input type="hidden" value="save" name="method" />
                                         <input type="hidden" id="id" name="id" value="{{$activity['id']}}">
-                                        <textarea rows="5" style="width:99%;border-radius: 1em;resize:none" class="current" id="content" name="content"></textarea> <br />
+                                        <textarea rows="5" style="width:99%;outline:none;border-radius: 1em;resize:none" class="current" id="content" name="content"></textarea> <br />
                                         <button type="button" onclick="sub()"  class="pure-button pure-button-primary">提交</button>
                                     </form>
                                 </div>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
-
+use App\Activity;
+use App\Word;
 class IndexController extends BaseController
 {
     public function index(){
@@ -13,7 +14,14 @@ class IndexController extends BaseController
         return view('admin.index.index');
     }
     public function welcome(){
-        return view('admin.index.welcome');
+        $userCount = User::all()->count(); //成员总数
+        $aCount = Activity::all()->count();
+        $wordCount = Word::all()->count();
+        return view('admin.index.welcome',[
+            'userCount'    => $userCount,
+            'aCount'       => $aCount,
+            'wordCount'   => $wordCount
+        ]);
     }
     public function login(){
         return view('admin.index.login');
