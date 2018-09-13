@@ -77,5 +77,6 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::post('words','UserController@chewords');
     Route::post('comment', 'UserController@comment');
     Route::post('replys', 'UserController@replys');
+    Route::post('up', 'UserController@upload');
 
 });

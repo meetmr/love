@@ -35,7 +35,11 @@ function countCheenroll($a_id){
 }
 function getUserName($u_id){
     $info = User::where('id','=',$u_id)->get()->toArray();
-    return $info[0]['user_name'];
+    if($info){
+        return $info[0];
+    }else{
+        return [];
+    }
 }
 function getTime($time){
     return date('Y-m-d :H:i:s',$time);
@@ -48,4 +52,13 @@ function getReplys($w_id){
 function geComment($a_id){
     $comment = Comment::where('a_id','=',$a_id)->orderBy('time','desc')->get();
     return $comment;
+}
+
+function getCommentUser($u_id){
+    $info = User::where('id','=',$u_id)->get()->toArray();
+    if($info){
+        return $info[0];
+    }else{
+        return [];
+    }
 }

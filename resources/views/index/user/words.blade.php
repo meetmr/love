@@ -64,11 +64,12 @@
 
                 @foreach($words as $word)
                 <div class="item" style=" background-color:rgba(255,225,227,0.2);}">
-                    <img class="head-img mt" src="/index/images/user.jpg"  style="border-radius: 50% ;">
+                    <?php $user = (getUserName($word->u_id)) ?>
+                    <img class="head-img mt" src="{{$user['icon_path']}}"  style="border-radius: 50% ;">
                     <div class="flexx"><div class="user-info">
-                            <img class="head-img mi" src="/index/images/user.jpg" style="border-radius: 50%">
+                            <img class="head-img mi" src="{{$user['icon_path']}}" style="border-radius: 50%">
                             <span class="name">
-                                {{ $word->name }}
+                                {{ $user['user_name'] }}
                             </span>
                             <div class="message">{{ $word->content }}</div>
                             <div class="info"><span class="count">{{ getTime($word->time) }}</span>
@@ -89,10 +90,11 @@
                     </div>
                     <?php $info = getReplys($word->id) ?>
                     @foreach($info as $value)
+                            <?php $user1 = (getUserName($value->u_id)) ?>
                     <div class="item"  style=" background-color:rgba(255,225,227,0.15);border: 0">
-                        <img class="head-img mt" src="/index/images/user.jpg"  style="border-radius: 50% ;">
+                        <img class="head-img mt" src="{{$user1['icon_path']}}"  style="border-radius: 50% ;">
                         <div class="flexx"><div class="user-info">
-                                <img class="head-img mi" src="/index/images/user.jpg" style="border-radius: 50%">
+                                <img class="head-img mi" src="{{$user1['icon_path']}}" style="border-radius: 50%">
                                 <span class="name">
                                      @if($value->name == '王恒兵' or $value->name == '李月婷' or $value->name == '鲜红玫')
                                     <span style="color:red;font-size: 10px;">管理员</span>
@@ -121,7 +123,6 @@
 </body>
 </html>
 <script>
-
     $(function () {
         $('.xixihehe').hide()
     })
@@ -155,9 +156,8 @@
         var postData ={"content":content,'w_id':id};
         $.post(url,postData,function (result) {
             if(result.error === 1 ){
-                layer.msg(result.msg,function () {
-                    window.location.reload();  //刷新父级页面
-                });
+                layer.msg(result.msg);
+                window.location.reload();  //刷新父级页面
             }else {
                 layer.msg(result.msg, {
                     icon: 5,

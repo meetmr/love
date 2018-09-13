@@ -86,7 +86,7 @@
                                 <a  disabled  class="pure-button pure-button-">已报名</a>
                             @else
                                 @if(session('user'))
-                                    @if( countCheenroll($activity['id']) == $activity['number'])
+                                    @if( countCheenroll($activity['id']) >= $activity['number'])
                                         <a  disabled  class="pure-button pure-button-">人数已满</a>
                                     @else
                                         <a href="/user/enroll/{{$activity['id']}}" class="pure-button pure-button-primary">报名</a>
@@ -124,10 +124,11 @@
                     <div class="page-words">
                         <div class="box-list">
                             @foreach($info as $value)
+                                <?php $user = getCommentUser($value->u_id)?>
                             <div class="item" style=" ">
-                                <img class="head-img mt" src="/index/images/user.jpg"  style="border-radius: 50% ;height: 5em;width: 5em;margin-left:-1em">
+                                <img class="head-img mt" src="{{$user['icon_path']}}"  style="border-radius: 50% ;height: 5em;width: 5em;margin-left:-1em">
                                 <div class="flexx"><div class="user-info">
-                                        <img class="head-img mi" src="/index/images/user.jpg" style="border-radius: 50%;height:5em;width:5em;margin-left:-2em">
+                                        <img class="head-img mi" src="{{$user['icon_path']}}"  style="border-radius: 50%;height:5em;width:5em;margin-left:-2em">
                                         <span class="name">{{$value->name}}</span>
                                         <div class="message">{{$value->content}}</div>
                                         <div class="info"><span class="count">{{getTime($value->time)}}</span>
