@@ -13,6 +13,7 @@ use App\Comment;
 // 引入 composer autoload
 // 导入 Intervention Image Manager Class
 use Intervention\Image\ImageManager as Image;
+use Illuminate\Support\Facades\Cookie;
 class UserController extends Controller
 {
     //完成激活页面
@@ -34,7 +35,7 @@ class UserController extends Controller
         $user->class = $data['class1'];
         $user->user_name = $data['user_name'];
         $user->icon_path = $data['icon_path'];
-        $user->is_serious =1;
+        $user->is_serious = 1;
         $info = $user->save();
         $user =  User::find($userInfo['id'])->toArray();
         session(['user'=>$user]);
@@ -113,13 +114,23 @@ class UserController extends Controller
                 return redirect('user/activate');
             }
         }
-        $words = Word::orderBy('time','desc')->paginate(15);
+        $words = Word::orderBy('time','desc')->paginate(3);
+        $url = url('words');
         return view('index.user.words', [
             'title'       =>  '爱心社-留言板',
-            'words'      =>$words
+            'words'       =>$words,
+            'url'         =>$url
         ]);
     }
     public function chewords(Request $request){
+//        dd(Cookie::get(session('user.id')));
+        if(Cookie::get(session('user.id'))){
+            $state = [
+                'error' => 0,
+                'msg'=> '留言失败'
+            ];
+            return json_encode($state);
+        }
         $content = $request->post('content');
         if(empty($content)){
             $state = [
@@ -135,6 +146,7 @@ class UserController extends Controller
         $word->time = time();
         $info = $word->save();
         if($info){
+            setcookie(session('user.id'),1,time()+3600);
             $state = [
                 'error' => 1,
                 'msg'=> '留言成功'
@@ -202,9 +214,9 @@ class UserController extends Controller
         if ($file->isValid()) {
             $path = $file->store(date('ymd'), 'upload_img');
                 // 通过指定 driver 来创建一个 image manager 实例 (默认使用 gd)
-            $manager = new Image();
-            $img = $manager->make('storage/img/'.$path)->resize(200, 200);
-            $img->save('storage/img/'.$path);
+//            $manager = new Image();
+//            $img = $manager->make('storage/img/'.$path)->resize(200, 200);
+//            $img->save('storage/img/'.$path);
             return json_encode([
                 'code' =>1,
                 'url' =>asset('/storage/img/' . $path)
@@ -212,4 +224,42 @@ class UserController extends Controller
         }
     }
 
+    // 用户修改资料
+    public function editUser(){
+        $u_id = session('user.id');
+        $user = User::find($u_id);
+        if($user == null){
+            return redirect('/');
+        }
+        $user = $user->toArray();
+        return view('index.user.edit', [
+            'title' =>  '爱心社-修改信息',
+            'user' =>   $user
+        ]);
+    }
+    public function cheEditUser(Request $request){
+        $u_id = session('user.id');
+        $data = $request->post();
+        $user =  User::find($u_id);
+        $user->department = $data['department'];
+        $user->class = $data['class1'];
+        $user->user_name = $data['user_name'];
+        $user->icon_path = $data['icon_path'];
+        $info = $user->save();
+        $user =  User::find($u_id)->toArray();
+        session(['user'=>$user]);
+        if($info){
+            $state = [
+                'error' => 1,
+                'msg'=> '修改完成'
+            ];
+            return json_encode($state);
+        }else{
+            $state = [
+                'error' => 0,
+                'msg'=> '修改失败'
+            ];
+            return json_encode($state);
+        }
+    }
 }

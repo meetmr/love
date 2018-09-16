@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
@@ -21,9 +22,11 @@ class IndexController extends Controller
                 'title' =>  '爱心社-注册'
             ]);
     }
-    public function login(){
+    public function login(Request $request){
+        $url = $request->get('url');
         return view('index.index.login', [
-            'title' =>  '爱心社-登陆'
+            'title' =>  '爱心社-登陆',
+             'url'   =>  $url
         ]);
     }
     public function cheregister(Request $request){
@@ -125,9 +128,10 @@ class IndexController extends Controller
            ];
            return json_encode($state);
        }
-        $state = [
+               $state = [
             'error' => 1,
-            'msg'=> '登陆成功'
+            'msg'   => '登陆成功',
+            'url'   => $data['url'] == null? '/':$data['url']
         ];
         return json_encode($state);
     }
@@ -142,13 +146,15 @@ class IndexController extends Controller
 
         $id = intval($id);
         $activity = Activity::find($id);
+        $url = url('/action/'.$id);
         if($activity == null){
             return redirect('/');
         }
         $activity = $activity->toArray();
         return view('index.index.action-info', [
-            'title' =>  '爱心社-'.$activity['activity_name'].'活动详情',
-            'activity' =>$activity
+            'title'    =>  '爱心社-'.$activity['activity_name'].'活动详情',
+            'activity' => $activity,
+            'url'     => $url
         ]);
     }
 }

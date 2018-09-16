@@ -22,7 +22,26 @@
 <script src= "{{asset('/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <body class="page-action"  id="wraper-bg">
-
+<style>
+    textarea{ resize:none;}
+    a{
+        text-decoration:none;
+        color: #aaa;
+    }
+    a:link{
+        text-decoration:none;
+    }
+    a:visited{
+        text-decoration:none;
+    }
+    a:hover{
+        text-decoration:none;
+        color: #ccc;
+    }
+    a:active{
+        text-decoration:none;
+    }
+</style>
 <div id="wraper-bg" class="wraper-bg">
     @include('index.public.head')
     <div class="detail box-content-wraper">
@@ -93,7 +112,7 @@
 
                                     @endif
                                 @else
-                                    <a href="{{url('login')}}" class="pure-button pure-button-primary">登录后报名</a>
+                                    <a href="/login?url={{$url}}" class="pure-button pure-button-primary">登录后报名</a>
                                 @endif
                             @endif
                             @endif
@@ -115,7 +134,7 @@
                                     </form>
                                 </div>
                             @else
-                                <a href="{{url('login')}}" class="pure-button pure-button-primary">登录后留言</a>
+                                <a href="/login?url={{$url}}" class="pure-button pure-button-primary">登录后留言</a>
                             @endif
                             <br />
                         </div>

@@ -79,4 +79,8 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     Route::post('replys', 'UserController@replys');
     Route::post('up', 'UserController@upload');
 
+    // 修改用户资料相关操作
+    Route::get('edit', 'UserController@editUser');
+    Route::post('edit', 'UserController@cheEditUser');
+
 });

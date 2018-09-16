@@ -55,7 +55,7 @@
                     </form>
                 </div>
                 @else
-                <a href="{{url('login')}}" class="pure-button pure-button-primary">登录后留言</a>
+                <a href="/login?url={{$url}}" class="pure-button pure-button-primary">登录后留言</a>
                 @endif
                 <br />
             </div>
@@ -76,7 +76,7 @@
                                 @if(session('user'))
                                     <span onclick="huifu(this,'{{$word->id}}')" id="aa{{$word->id}}" class="aa" style="cursor: pointer;">回复</span>
                                     @else
-                                    <span style="cursor: pointer;"><a href="{{url('login')}}">登陆后回复</a> </span>
+                                    <span style="cursor: pointer;"><a href="/login?url={{$url}}">登陆后回复</a> </span>
                                 @endif
                             </div>
                         </div>

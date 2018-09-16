@@ -13,6 +13,7 @@
 
                         <label for="username">学号</label>
                         <input class="pure-input-1" name="username" id="school_number" type="text" placeholder="请输入学号">
+                        <input class="pure-input-1" name="url" id="url" value="{{$url}}" type="hidden" >
                         <label for="password">设置密码</label>
                         <input class="pure-input-1" name="pwd" id="password" type="password"  placeholder="请输入密码">
 
@@ -32,6 +33,7 @@
     function login() {
         var school_number = $("#school_number").val();
         var password = $("#password").val();
+        var jump = $("#url").val();
         var reg1 = /^\d{8}\b/;
         var pass = /^\w{6,16}$/;
         if(!reg1.test($("#school_number").val())){
@@ -49,11 +51,12 @@
             return;
         }
         var url = "{{url('login')}}";
-        var postData ={"school_number":school_number,'password':password};
+        var postData ={"school_number":school_number,'password':password,'url':jump};
         $.post(url,postData,function (result) {
             if(result.error === 1 ){
+                var url = result.url;
                 layer.msg(result.msg);
-                location.href = "{{ url('/') }}";
+                location.href = url;
 
             }else if (result.error === 2 ){
                 layer.alert(result.msg,function () {

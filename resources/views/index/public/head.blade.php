@@ -1,7 +1,11 @@
-
+<style>
+    a{
+        text-decoration:none;
+        color:#333;
+    }
+</style>
 <body class="page-index">
 <div class="wraper-bg">
-
     <div class="header">
         <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed" id="home">
 
@@ -19,7 +23,7 @@
                 <li class="pure-menu-item"><a href="{{ url('/words') }}" class="pure-menu-link">留言板</a></li>
                 @if(session('user'))
                     @if(session('user'))
-                        <li class="pure-menu-item" style="color: #5e5d5d">{{session('user.user_name')}}</li>
+                        <li class="pure-menu-item" style="color: #5e5d5d"><a href="{{ url('user/edit') }}">{{session('user.user_name')}}</a></li>
                     @endif
                     <li class="pure-menu-item"><a href="{{ url('user/outlogin') }}" class="pure-menu-link">注销</a></li>
 
