@@ -131,7 +131,7 @@ class IndexController extends Controller
                $state = [
             'error' => 1,
             'msg'   => '登陆成功',
-            'url'   => $data['url'] == null? '/':$data['url']
+            'url'   => $data['url'] == null ? '/':$data['url']
         ];
         return json_encode($state);
     }
@@ -146,7 +146,8 @@ class IndexController extends Controller
 
         $id = intval($id);
         $activity = Activity::find($id);
-        $url = url('/action/'.$id);
+        $url =url('/action/'.$id);
+
         if($activity == null){
             return redirect('/');
         }

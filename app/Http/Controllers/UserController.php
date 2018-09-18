@@ -14,6 +14,8 @@ use App\Comment;
 // 导入 Intervention Image Manager Class
 use Intervention\Image\ImageManager as Image;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Crypt;
+
 class UserController extends Controller
 {
     //完成激活页面

@@ -144,6 +144,7 @@
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     function suba(id) {
         var content = $("#content"+id).val();
+        $("#content"+id).val('')
         if(content == ''){
             layer.msg('请输入点内容');
             return false;
@@ -170,6 +171,8 @@
 
     function sub() {
         var content = $("#content").val();
+        $("#content").val('');
+
         if(content == ''){
             layer.msg('请输入点内容');
             return false;
