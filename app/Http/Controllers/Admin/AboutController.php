@@ -18,8 +18,8 @@ class AboutController extends BaseController
         if ($file->isValid()) {
             $path = $file->store(date('ymd'), 'upload_img');
             return json_encode([
-                'code' =>1,
-                'url' =>asset('/storage/img/' . $path)
+                'code' =>1,  // 成功状态码
+                'url' =>asset('/storage/img/' . $path)   // 文件地址
             ]);
         }
     }

@@ -37,7 +37,7 @@
                             <option value="数字艺术系">数字艺术系 </option>
                         </select>
                         <label for="class">班级</label>
-                        <input class="pure-input-1" name="class" id="class" type="text" value="">
+                        <input class="pure-input-1" placeholder="如：软件16-5" name="class" id="class" type="text" value="">
                         <label for="user_name">姓名</label>
                         <input class="pure-input-1" name="user_name" id="user_name" type="text" value="">
                         <input class="pure-input-1" name="user_id" id="user_id" type="hidden" value="{{ $userInfo['id'] }}">

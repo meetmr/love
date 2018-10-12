@@ -14,8 +14,10 @@ class UserController extends BaseController
         if($request->isMethod('post')){
             $key = $request->post('key');
             $userInfo = User::orwhere('school_number','like','%'.$key.'%')->orwhere('user_name','like','%'.$key.'%')->paginate(15);
+            $count = count($userInfo);
             return view('admin.user.user-Info',[
-                'users' =>  $userInfo
+                'users' =>  $userInfo,
+                'count' =>  $count
             ]);
         }
         $userInfo = User::paginate(15);

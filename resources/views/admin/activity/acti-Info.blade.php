@@ -47,7 +47,7 @@
                         <td>{{ $activit->participant }} </td>
                         <td>{{ $activit->place }}</td>
                         <td>{{ $activit->number }}</td>
-                        <td>{{ showMsg($activit->is_over) }}</td>
+                        <td>{{ countCheenroll($activit->is_over) }}</td>
                         <td>
                             @if($activit->is_over == 0)
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" onclick="over1(1,'{{$activit->id}}')">未结束</a>

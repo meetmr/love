@@ -17,7 +17,7 @@ use App\User;
 use App\Replys;
 use App\Comment;
 function showMsg($id){
-   echo $id.'a';
+   echo $id;
 }
 function is_cheenroll($a_id){
     $uid = session('user.id');

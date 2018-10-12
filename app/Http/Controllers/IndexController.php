@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
 use App\Activity;
+use Illuminate\Support\Facades\Mail;
+
 class IndexController extends Controller
 {
     //
@@ -157,5 +159,75 @@ class IndexController extends Controller
             'activity' => $activity,
             'url'     => $url
         ]);
+    }
+
+    // 找回密码
+    public function retrieve(){
+        return view('index.index.retrieve', [
+            'title'    =>  '爱心社-找回密码',
+        ]);
+    }
+    public function cheretrieve(Request $request){
+        $data = $request->post();
+        $user = User::where('school_number',$data['school_number'])->get();
+        $count = $user->toArray();
+        if(count($count) == 0){
+            $state = [
+                'error' => -1,
+                'msg'=> '输入的信息错误'
+            ];
+            return json_encode($state);
+        }
+        if($data['email']!=$count[0]['emal']){
+            $state = [
+                'error' => -1,
+                'msg'=> '输入的信息错误'
+            ];
+            return json_encode($state);
+        }
+        if($data['user_name']!=$count[0]['user_name']){
+            $state = [
+                'error' => -1,
+                'msg'=> '输入的信息错误'
+            ];
+            return json_encode($state);
+        }
+        if($data['class']!=$count[0]['class']){
+            $state = [
+                'error' => -1,
+                'msg'=> '输入的信息错误'
+            ];
+            return json_encode($state);
+        }
+        if($data['department']!=$count[0]['department']){
+            $state = [
+                'error' => -1,
+                'msg'=> '输入的信息错误'
+            ];
+            return json_encode($state);
+        }
+        $password = decrypt($count[0]['password']);
+        $m = $count[0]['emal'];
+        session(['mall'=>$m]);
+        $flag = Mail::send('emails.ces',['passwrd'=>$password],function($message){
+            $to = session('mall');
+            $message ->to($to)->subject('爱心社-找回密码');
+        });
+        if(!$flag){
+            $state = [
+                'error' => 1,
+                'msg'=> '密码已经发送到邮箱中'
+            ];
+            return json_encode($state);
+
+        }else{
+            $state = [
+                'error' => -1,
+                'msg'=> '发生失败'
+            ];
+            return json_encode($state);
+
+        }
+
     }
 }

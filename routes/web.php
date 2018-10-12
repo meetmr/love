@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Mail;
 Route::get('/','IndexController@index');
 Route::get('register','IndexController@register');
 Route::get('login','IndexController@login');
@@ -23,6 +24,9 @@ Route::get('action/{id}','IndexController@activatecheInfo');
 Route::get('words','UserController@words');
 
 Route::get('about/{id}','AboutController@infoList');
+// 忘记密码
+Route::get('retrieve/','IndexController@retrieve');
+Route::post('retrieve/','IndexController@cheretrieve');
 
 // 关于我们
 Route::get('about','AboutController@info');
@@ -82,5 +86,20 @@ Route::group(['middleware'=>['web','admin.login'],'prefix'=>'user'],function (){
     // 修改用户资料相关操作
     Route::get('edit', 'UserController@editUser');
     Route::post('edit', 'UserController@cheEditUser');
+
+});
+
+Route::get('mal',function (){
+    $flag = Mail::send('emails.ces',['name'=>'24252'],function($message){
+        $to = '83466349@qq.com';
+        $message ->to($to)->subject('测试邮件');
+    });
+    dd($flag);;
+    if($flag){
+        echo '发送邮件成功，请查收！';
+    }else{
+        echo '发送邮件失败，请重试！';
+    }
+
 
 });

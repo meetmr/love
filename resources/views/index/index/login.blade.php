@@ -20,6 +20,8 @@
                     </fieldset>
                     <fieldset>
                         <button type="button"  onclick="login()" class="pure-button pure-input-1 pure-button-primary">登&nbsp;&nbsp;录</button>
+                        <br>
+                        <span style="margin-left: 15em;cursor: pointer" ><a href="{{url('retrieve')}}">忘记密码</a></span>
                     </fieldset>
                 </form>
             </div>
