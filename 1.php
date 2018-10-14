@@ -12,3 +12,6 @@ $number = array_map(function ($n){
 },[1,5,600]);
 
 var_dump($number);
+$cen  = mysqli_connect('127.0.0.1','','','','');
+$sql = '';
+$c = mysqli_query($cen,$msyql);

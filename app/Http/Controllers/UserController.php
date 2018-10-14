@@ -76,6 +76,14 @@ class UserController extends Controller
         ]);
     }
     public function cheenroll(Request $request){
+        $user = Participate::where(['u_id'=>session('user.id')])->get();
+        if(count($user)){
+            $state = [
+                'error' => 1,
+                'msg'=> '重复报名'
+            ];
+            return json_encode($state);
+        }
         $data = $request->all();
         $participate = new Participate();
         $participate->ac_id = $data['a_id'];
