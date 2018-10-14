@@ -54,6 +54,7 @@ Route::group(['middleware'=>['web','admin.admin'],'prefix'=>'admin','namespace'=
 
     //生成活动名单
     Route::get('activity/export/{id}', 'ActivityController@export');
+    Route::get('activity/export', 'UserController@export');
 
     //留言管理
     Route::get('replys/list', 'UserController@replyList');

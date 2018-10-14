@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
 use App\Replys;
+use Maatwebsite\Excel\Facades\Excel;
+
 class UserController extends BaseController
 {
     public function userInfo(Request $request){
@@ -133,4 +135,39 @@ class UserController extends BaseController
             return json_encode($state);
         }
     }
+
+    // 导出名单
+
+    public function export(){
+        $titlename = '已注册名单';
+        $info = User::where(['is_serious'=>1])->select()->get()->toArray();
+        $array = [['爱心社已注册名单'],['序号','学号','姓名','班级','系部'],];
+        $i = 2;
+        $j = 1;
+        foreach ($info as $item){
+            $array[$i][] = $j++;
+            $array[$i][] = $item['school_number'];
+            $array[$i][] = $item['user_name'];
+            $array[$i][] = $item['class'];
+            $array[$i][] = $item['department'];
+
+            $i++;
+        }
+        Excel::create($titlename,function($excel) use ($array){
+            $excel->sheet('score', function($sheet) use ($array){
+                $tot = count($array) ;
+                $sheet->setWidth(array(
+                    'A'     =>  10,
+                    'B'     =>  10,
+                    'C'     =>  10,
+                    'D'     =>  10,
+                    'E'     =>  10,
+                    'F'     =>  10,
+                ))->rows($array)->setFontSize(12);
+            });
+        })->store('xls')->export('xls');
+
+        return redirect('/admin/index');
+    }
+
 }

@@ -25,7 +25,7 @@
         </form>
     </div>
     <span  style="text-align: center;margin-left: 3em" >共{{$count}}名同学</span>
-
+    <a href="{{url('admin/activity/export')}}"><button class="layui-btn"  lay-submit="" lay-filter="sreach">导出名单</button></a>
 </xblock>
 
 
